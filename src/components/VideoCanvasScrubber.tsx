@@ -82,7 +82,14 @@ export const VideoCanvasScrubber: React.FC<VideoCanvasScrubberProps> = ({
         preload="auto"
         muted
         playsInline
-        className="w-full h-full object-cover filter contrast-[1.04] brightness-[0.98] select-none"
+        disablePictureInPicture
+        disableRemotePlayback
+        controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+        onContextMenu={(e) => e.preventDefault()}
+        tabIndex={-1}
+        aria-hidden="true"
+        data-adobe-extension-disable="true"
+        className="w-full h-full object-cover filter contrast-[1.04] brightness-[0.98] select-none pointer-events-none"
       />
 
       {/* Subtle Studio Spotlight Glow */}

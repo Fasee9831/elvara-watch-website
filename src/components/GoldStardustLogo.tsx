@@ -121,7 +121,8 @@ export const GoldStardustLogo: React.FC<GoldStardustLogoProps> = ({
       if (!isMounted) return;
 
       const rect = container.getBoundingClientRect();
-      const width = Math.max(rect.width || 400, 320);
+      const availableWidth = typeof window !== 'undefined' ? window.innerWidth - 24 : 360;
+      const width = Math.min(availableWidth, Math.max(rect.width || 400, 280));
       const height = Math.max(rect.height || 110, 90);
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
 

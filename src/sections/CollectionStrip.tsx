@@ -283,7 +283,7 @@ export const CollectionStrip: React.FC = () => {
                 </div>
 
                 {/* Editorial Details Column */}
-                <div className="w-full lg:w-[45%] h-[48%] lg:h-full p-4 md:p-5 lg:p-5 flex flex-col justify-between relative bg-[#0D0D0B]/95 backdrop-blur-md">
+                <div className="w-full lg:w-[45%] h-[48%] lg:h-full p-3 xs:p-3.5 sm:p-4 md:p-5 lg:p-5 flex flex-col justify-between relative bg-[#0D0D0B]/95 backdrop-blur-md">
                   {/* Accent Top Border */}
                   <div
                     className="absolute top-0 left-0 w-full lg:w-[2.5px] lg:h-full h-[2.5px] transition-all duration-300"
@@ -291,40 +291,40 @@ export const CollectionStrip: React.FC = () => {
                   />
 
                   <div>
-                    <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-1.5 mb-2">
-                      <span className="font-eyebrow text-[0.58rem] md:text-[0.65rem] tracking-[0.2em] text-[var(--color-accent)] font-semibold truncate pr-2">
+                    <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
+                      <span className="font-eyebrow text-[0.54rem] sm:text-[0.58rem] md:text-[0.65rem] tracking-[0.2em] text-[var(--color-accent)] font-semibold truncate pr-2">
                         {watch.collection}
                       </span>
                       
-                      <div className="inline-flex items-center gap-1 font-sans text-[0.62rem] tracking-wider text-white/95 bg-[#141414]/90 backdrop-blur-xl border border-white/10 px-2 py-0.5 rounded-md font-medium shadow-md whitespace-nowrap shrink-0">
+                      <div className="inline-flex items-center gap-1 font-sans text-[0.56rem] sm:text-[0.62rem] tracking-wider text-white/95 bg-[#141414]/90 backdrop-blur-xl border border-white/10 px-2 py-0.5 rounded-md font-medium shadow-md whitespace-nowrap shrink-0">
                         <FormattedPrice watch={watch} />
                       </div>
                     </div>
 
-                    <h3 className="font-cinzel text-lg sm:text-xl md:text-2xl text-gold-bright font-light tracking-wide mb-1">
+                    <h3 className="font-cinzel text-base xs:text-lg sm:text-xl md:text-2xl text-gold-bright font-light tracking-wide mb-0.5 sm:mb-1">
                       {watch.name}
                     </h3>
                     <p
-                      className="font-display text-[0.7rem] md:text-xs text-[var(--color-accent)] mb-1.5 italic font-normal line-clamp-1"
+                      className="font-display text-[0.62rem] xs:text-[0.7rem] md:text-xs text-[var(--color-accent)] mb-1 sm:mb-1.5 italic font-normal line-clamp-1"
                     >
                       "{watch.statement}"
                     </p>
-                    <p className="font-body text-[0.72rem] md:text-[0.78rem] text-white/75 font-light leading-relaxed line-clamp-3 md:line-clamp-4">
+                    <p className="font-body text-[0.68rem] xs:text-[0.72rem] md:text-[0.78rem] text-white/75 font-light leading-relaxed line-clamp-2 md:line-clamp-4">
                       {watch.description}
                     </p>
                   </div>
 
                   {/* Micro Specs Tags & Action */}
-                  <div className="pt-3 flex items-center justify-between border-t border-white/10">
-                    <div className="flex gap-1.5 flex-wrap">
-                      <span className="font-metadata text-[0.58rem] border border-white/20 px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
+                  <div className="pt-2 sm:pt-3 flex items-center justify-between border-t border-white/10">
+                    <div className="flex gap-1 sm:gap-1.5 flex-wrap">
+                      <span className="font-metadata text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
                         {watch.caseDiameter}
                       </span>
-                      <span className="font-metadata text-[0.58rem] border border-white/20 px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
+                      <span className="font-metadata text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
                         {watch.waterResistance}
                       </span>
                     </div>
-                    <span className="font-metadata text-[0.65rem] text-[var(--color-accent)] tracking-wider group-hover:translate-x-1 transition-transform font-semibold flex items-center gap-1">
+                    <span className="font-metadata text-[0.58rem] sm:text-[0.65rem] text-[var(--color-accent)] tracking-wider group-hover:translate-x-1 transition-transform font-semibold flex items-center gap-1">
                       COMPARE SPEC →
                     </span>
                   </div>
@@ -335,8 +335,8 @@ export const CollectionStrip: React.FC = () => {
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="w-full px-6 md:px-14 lg:px-20 z-20 flex justify-between items-center font-metadata text-white/70 text-xs tracking-[0.25em]">
-          <span>HORLOGERIE D'EXCELLENCE</span>
+        <div className="w-full px-4 sm:px-6 md:px-14 lg:px-20 z-20 flex justify-between items-center font-metadata text-white/70 text-[0.52rem] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em]">
+          <span className="hidden sm:inline">HORLOGERIE D'EXCELLENCE</span>
           <span className="text-[var(--color-accent)] font-semibold">SCROLL TO EXPLORE THE COLLECTION</span>
           <span>9 PIECES TOTAL</span>
         </div>

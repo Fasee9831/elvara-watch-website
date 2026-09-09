@@ -1148,7 +1148,7 @@ export const PrivateConcierge: React.FC = () => {
             exit="closed"
             role="dialog"
             aria-label="ÉLVARA Private Concierge"
-            className="fixed z-[96] right-3 sm:right-6 bottom-16 sm:bottom-20 w-[calc(100vw-24px)] sm:w-[360px] h-[430px] max-h-[calc(100vh-90px)] max-h-[calc(100dvh-90px)] bg-[#0C0C0B]/98 backdrop-blur-2xl border border-[var(--color-accent)]/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white font-sans"
+            className="fixed z-[96] right-3 sm:right-6 bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] sm:bottom-20 w-[calc(100vw-24px)] sm:w-[360px] h-[430px] max-h-[calc(100vh-90px)] max-h-[calc(100dvh-90px)] bg-[#0C0C0B]/98 backdrop-blur-2xl border border-[var(--color-accent)]/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white font-sans"
             style={{
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(229, 195, 120, 0.08)',
             }}
@@ -1346,7 +1346,7 @@ export const PrivateConcierge: React.FC = () => {
       {/* =========================================================
           2. FLOATING CONCIERGE LAUNCHER BUTTON (FIXED BOTTOM-RIGHT)
          ========================================================= */}
-      <div className="fixed z-[95] right-3 sm:right-6 bottom-4 sm:bottom-6 select-none">
+      <div className="fixed z-[95] right-3 sm:right-6 bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] sm:bottom-6 select-none">
         {/* Hover Tooltip */}
         <AnimatePresence>
           {isTooltipVisible && !isOpen && (

@@ -212,8 +212,8 @@ export const WristSizeGuide: React.FC = () => {
         {/* Radiant Background Aura */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(200,180,138,0.04)_0%,transparent_65%)]" />
 
-        <div className="viewport-usable-shell max-w-5xl mx-auto flex flex-col justify-between py-1.5 sm:py-2.5 w-full my-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-center w-full">
+        <div className="viewport-usable-shell max-w-5xl mx-auto flex flex-col justify-between py-1 sm:py-2.5 w-full my-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2.5 sm:gap-4 lg:gap-6 items-center w-full">
             
             {/* Left Column: Interactive Tailoring Controls */}
             <div className="lg:col-span-5 flex flex-col justify-center">
@@ -222,18 +222,18 @@ export const WristSizeGuide: React.FC = () => {
                 className="will-change-[transform,opacity]"
               >
                 {/* Chapter Badge */}
-                <div className="inline-flex items-center space-x-1.5 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full mb-1.5 w-fit">
+                <div className="inline-flex items-center space-x-1.5 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full mb-1 w-fit">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] animate-pulse" />
-                  <span className="font-metadata text-[0.46rem] sm:text-[0.5rem] tracking-[0.2em] text-[var(--color-accent)] font-medium uppercase">
+                  <span className="font-metadata text-[0.44rem] sm:text-[0.5rem] tracking-[0.2em] text-[var(--color-accent)] font-medium uppercase">
                     CHAPTER IX • WRIST PROPORTION
                   </span>
                 </div>
 
-                <h2 className="text-gold-gradient font-cinzel text-lg sm:text-xl md:text-2xl font-normal leading-tight text-shadow-cinematic mb-1 tracking-[0.08em] uppercase">
+                <h2 className="text-gold-gradient font-cinzel text-base sm:text-xl md:text-2xl font-normal leading-tight text-shadow-cinematic mb-0.5 sm:mb-1 tracking-[0.08em] uppercase">
                   Find Your Ideal Match
                 </h2>
                 
-                <p className="font-sans text-[0.54rem] sm:text-[0.6rem] text-white/60 font-light leading-snug mb-2 sm:mb-2.5 max-w-sm">
+                <p className="font-sans text-[0.52rem] sm:text-[0.6rem] text-white/60 font-light leading-snug mb-1.5 sm:mb-2.5 max-w-sm">
                   Calibrate your wrist measurement to preview recommended dial sizes and matched timepieces in real time.
                 </p>
               </div>
@@ -241,34 +241,34 @@ export const WristSizeGuide: React.FC = () => {
               {/* Studio Measurement Panel */}
               <div
                 ref={panelRef}
-                className="bg-[#0B0B0A]/95 border border-white/10 rounded-xl p-2.5 sm:p-3 shadow-xl backdrop-blur-md"
+                className="bg-[#0B0B0A]/95 border border-white/10 rounded-xl p-2 sm:p-2.5 md:p-3 shadow-xl backdrop-blur-md"
               >
                 {/* Metric & Classification Row */}
-                <div className="flex justify-between items-center mb-2">
+                <div className="flex justify-between items-center mb-1.5 sm:mb-2">
                   <div>
-                    <span className="font-metadata text-[0.46rem] sm:text-[0.5rem] text-white/45 block tracking-wider mb-0.5 uppercase">
+                    <span className="font-metadata text-[0.42rem] sm:text-[0.5rem] text-white/45 block tracking-wider mb-0.5 uppercase">
                       WRIST MEASUREMENT
                     </span>
                     <div className="flex items-baseline space-x-1.5">
-                      <span className="font-mono-num text-xl sm:text-2xl text-white font-bold tracking-tight">
+                      <span className="font-mono-num text-lg sm:text-2xl text-white font-bold tracking-tight">
                         {wristCircumferenceCM} cm
                       </span>
-                      <span className="font-body text-[0.65rem] sm:text-xs text-white/50">
+                      <span className="font-body text-[0.6rem] sm:text-xs text-white/50">
                         / {wristInches}"
                       </span>
                     </div>
                   </div>
 
                   <div className="text-right bg-white/[0.04] border border-white/10 px-2 py-0.5 rounded-md">
-                    <span className="font-metadata text-[0.42rem] sm:text-[0.45rem] text-white/40 block tracking-wider uppercase">FIT PROFILE</span>
-                    <span className="font-cinzel text-[0.62rem] sm:text-[0.68rem] text-gold-bright font-medium">
+                    <span className="font-metadata text-[0.4rem] sm:text-[0.45rem] text-white/40 block tracking-wider uppercase">FIT PROFILE</span>
+                    <span className="font-cinzel text-[0.58rem] sm:text-[0.68rem] text-gold-bright font-medium">
                       {currentFit.label}
                     </span>
                   </div>
                 </div>
 
                 {/* Slider Input */}
-                <div className="space-y-0.5 mb-2">
+                <div className="space-y-0.5 mb-1.5 sm:mb-2">
                   <input
                     type="range"
                     min="14"
@@ -279,7 +279,7 @@ export const WristSizeGuide: React.FC = () => {
                     className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[var(--color-accent)]"
                     aria-label="Calibrate wrist circumference in centimeters"
                   />
-                  <div className="flex justify-between font-mono text-[0.42rem] sm:text-[0.46rem] text-white/30">
+                  <div className="flex justify-between font-mono text-[0.4rem] sm:text-[0.46rem] text-white/30">
                     <span>14 cm (5.5")</span>
                     <span>17.5 cm</span>
                     <span>21 cm (8.3")</span>
@@ -287,16 +287,16 @@ export const WristSizeGuide: React.FC = () => {
                 </div>
 
                 {/* Recommendations Callout */}
-                <div className="bg-white/[0.03] border border-white/10 rounded-lg p-2">
+                <div className="bg-white/[0.03] border border-white/10 rounded-lg p-1.5 sm:p-2">
                   <div className="flex justify-between items-center mb-0.5">
-                    <span className="font-metadata text-[0.44rem] sm:text-[0.48rem] text-[var(--color-accent)] font-semibold tracking-wider uppercase">
+                    <span className="font-metadata text-[0.42rem] sm:text-[0.48rem] text-[var(--color-accent)] font-semibold tracking-wider uppercase">
                       RECOMMENDED CASE
                     </span>
-                    <span className="font-mono-num text-[0.56rem] sm:text-[0.62rem] text-white font-semibold">
+                    <span className="font-mono-num text-[0.52rem] sm:text-[0.62rem] text-white font-semibold">
                       {currentFit.caseSizes}
                     </span>
                   </div>
-                  <p className="text-[0.5rem] sm:text-[0.55rem] text-white/60 font-light leading-snug">
+                  <p className="text-[0.48rem] sm:text-[0.55rem] text-white/60 font-light leading-snug">
                     {currentFit.tips}
                   </p>
                 </div>
@@ -307,9 +307,9 @@ export const WristSizeGuide: React.FC = () => {
             <div className="lg:col-span-7">
               <div
                 ref={cardsHeaderRef}
-                className="flex justify-between items-center mb-1.5 px-0.5"
+                className="flex justify-between items-center mb-1 sm:mb-1.5 px-0.5"
               >
-                <span className="font-metadata text-[0.48rem] sm:text-[0.52rem] text-white/50 tracking-widest uppercase">
+                <span className="font-metadata text-[0.44rem] sm:text-[0.52rem] text-white/50 tracking-widest uppercase">
                   MATCHED TIMEPIECES ({recommendedWatches.length} CURATIONS)
                 </span>
                 <a
@@ -318,22 +318,22 @@ export const WristSizeGuide: React.FC = () => {
                     e.preventDefault();
                     navigateToSection('collection');
                   }}
-                  className="font-metadata text-[0.5rem] sm:text-[0.54rem] text-[var(--color-accent)] hover:underline tracking-wider uppercase cursor-pointer"
+                  className="font-metadata text-[0.46rem] sm:text-[0.54rem] text-[var(--color-accent)] hover:underline tracking-wider uppercase cursor-pointer"
                 >
                   VIEW COLLECTION →
                 </a>
               </div>
 
-              <div ref={cardsContainerRef} className="grid grid-cols-2 gap-2 sm:gap-2.5">
+              <div ref={cardsContainerRef} className="grid grid-cols-2 gap-1.5 sm:gap-2.5">
                 {recommendedWatches.map((watch) => {
                   return (
                     <a
                       key={watch.id}
                       href="#collection"
                       onClick={(e) => handleCardClick(e, watch.id)}
-                      className="group bg-[#0A0A09]/95 border border-white/10 hover:border-[var(--color-accent)]/45 rounded-xl p-2 sm:p-2.5 transition-all duration-300 flex flex-col justify-between shadow-lg cursor-pointer"
+                      className="group bg-[#0A0A09]/95 border border-white/10 hover:border-[var(--color-accent)]/45 rounded-xl p-1.5 sm:p-2.5 transition-all duration-300 flex flex-col justify-between shadow-lg cursor-pointer"
                     >
-                      <div className="aspect-[16/10] w-full max-h-[100px] sm:max-h-[115px] rounded-lg overflow-hidden bg-[#141413] border border-white/10 relative mb-1.5">
+                      <div className="aspect-[16/10] w-full max-h-[70px] xs:max-h-[85px] sm:max-h-[100px] md:max-h-[115px] rounded-lg overflow-hidden bg-[#141413] border border-white/10 relative mb-1 sm:mb-1.5">
                         <div className="absolute inset-0 image-loading-placeholder pointer-events-none z-0" />
                         <img
                           src={watch.image}
@@ -345,24 +345,24 @@ export const WristSizeGuide: React.FC = () => {
                           }}
                           className="w-full h-full object-cover filter contrast-[1.05] group-hover:scale-105 transition-transform duration-500 relative z-[1]"
                         />
-                        <span className="absolute top-1 left-1 font-metadata text-[0.42rem] sm:text-[0.46rem] bg-black/80 px-1.5 py-0.5 rounded text-white/70 border border-white/10 z-[2]">
+                        <span className="absolute top-1 left-1 font-metadata text-[0.4rem] sm:text-[0.46rem] bg-black/80 px-1.5 py-0.5 rounded text-white/70 border border-white/10 z-[2]">
                           {watch.number}
                         </span>
-                        <span className="absolute bottom-1 right-1 font-mono-num text-[0.44rem] sm:text-[0.48rem] bg-black/80 px-1.5 py-0.5 rounded text-[var(--color-accent)] border border-[var(--color-accent)]/30 font-semibold z-[2]">
+                        <span className="absolute bottom-1 right-1 font-mono-num text-[0.4rem] sm:text-[0.48rem] bg-black/80 px-1.5 py-0.5 rounded text-[var(--color-accent)] border border-[var(--color-accent)]/30 font-semibold z-[2]">
                           {watch.caseDiameter}
                         </span>
                       </div>
 
                       <div className="flex justify-between items-center px-0.5">
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-cinzel text-[0.65rem] sm:text-[0.72rem] text-white group-hover:text-gold-bright transition-colors font-medium leading-tight truncate">
+                          <h4 className="font-cinzel text-[0.6rem] xs:text-[0.65rem] sm:text-[0.72rem] text-white group-hover:text-gold-bright transition-colors font-medium leading-tight truncate">
                             {watch.name}
                           </h4>
-                          <span className="font-sans text-[0.46rem] sm:text-[0.5rem] text-white/45 block leading-tight truncate mt-0.5">
+                          <span className="font-sans text-[0.42rem] sm:text-[0.5rem] text-white/45 block leading-tight truncate mt-0.5">
                             {watch.movementType}
                           </span>
                         </div>
-                        <span className="font-metadata text-[0.54rem] sm:text-[0.58rem] text-[var(--color-accent)] group-hover:translate-x-0.5 transition-transform font-bold ml-1 flex-shrink-0">
+                        <span className="font-metadata text-[0.48rem] sm:text-[0.58rem] text-[var(--color-accent)] group-hover:translate-x-0.5 transition-transform font-bold ml-1 flex-shrink-0">
                           →
                         </span>
                       </div>

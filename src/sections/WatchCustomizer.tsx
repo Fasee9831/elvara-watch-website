@@ -380,14 +380,14 @@ export const WatchCustomizer: React.FC = () => {
             </div>
 
             {/* Perspective Angle Switcher */}
-            <div className="flex justify-center gap-1 mt-2">
+            <div className="flex justify-center gap-1 sm:gap-1.5 mt-2">
               {selectedEdition.perspectives.map((p, idx) => {
                 const isActive = activePerspectiveIdx === idx;
                 return (
                   <button
                     key={p.label}
                     onClick={() => handleSelectPerspective(idx)}
-                    className={`px-2 py-0.5 rounded text-[0.46rem] sm:text-[0.5rem] font-metadata tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                    className={`px-2.5 py-1 sm:py-0.5 rounded text-[0.46rem] sm:text-[0.5rem] font-metadata tracking-wider uppercase transition-all duration-200 cursor-pointer min-h-[28px] sm:min-h-0 flex items-center justify-center ${
                       isActive
                         ? 'bg-[var(--color-accent)] text-[#070706] font-bold shadow-sm'
                         : 'bg-black/50 text-white/60 hover:text-white border border-white/10'
@@ -488,7 +488,7 @@ export const WatchCustomizer: React.FC = () => {
             {/* 3. Integrated Engraving, Price & Action CTA */}
             <div className="bg-[#0B0B0A]/95 border border-white/10 rounded-lg p-2 sm:p-2.5 flex flex-col space-y-2">
               
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-between gap-2">
                 {/* Monogram Engraving */}
                 <div className="flex items-center space-x-1.5">
                   <span className="font-metadata text-[0.46rem] sm:text-[0.5rem] text-white/60 whitespace-nowrap uppercase">
@@ -500,12 +500,12 @@ export const WatchCustomizer: React.FC = () => {
                     value={engraving}
                     onChange={(e) => setEngraving(e.target.value.toUpperCase())}
                     placeholder="INITIALS"
-                    className="bg-white/5 border border-white/15 px-1.5 py-0.5 rounded text-[0.52rem] sm:text-[0.56rem] font-mono tracking-widest text-[var(--color-accent)] focus:outline-none focus:border-[var(--color-accent)] w-20 sm:w-24 uppercase text-center"
+                    className="bg-white/5 border border-white/15 px-2 py-1 sm:py-0.5 rounded text-xs sm:text-[0.56rem] font-mono tracking-widest text-[var(--color-accent)] focus:outline-none focus:border-[var(--color-accent)] w-20 sm:w-24 uppercase text-center"
                   />
                 </div>
 
                 {/* Price & Currency */}
-                <div className="flex items-center space-x-2 ml-auto">
+                <div className="flex items-center justify-between xs:justify-end space-x-2 xs:ml-auto">
                   <CurrencySelector />
 
                   <span className="font-cinzel text-base sm:text-lg text-gold-bright font-medium tracking-tight whitespace-nowrap">
@@ -520,7 +520,7 @@ export const WatchCustomizer: React.FC = () => {
               {/* Commission CTA */}
               <button
                 onClick={handleCommission}
-                className="luxury-btn-primary w-full py-1.5 sm:py-2 px-3 font-sans text-[0.56rem] sm:text-[0.62rem] font-bold tracking-[0.16em] uppercase rounded-md transition-all shadow-md text-center cursor-pointer"
+                className="luxury-btn-primary w-full py-2 sm:py-2 px-3 font-sans text-[0.58rem] sm:text-[0.62rem] font-bold tracking-[0.16em] uppercase rounded-md transition-all shadow-md text-center cursor-pointer min-h-[38px] sm:min-h-0 flex items-center justify-center"
               >
                 {isSaved ? 'COMMISSION RECORDED ✓' : 'COMMISSION THIS BESPOKE TIMEPIECE →'}
               </button>

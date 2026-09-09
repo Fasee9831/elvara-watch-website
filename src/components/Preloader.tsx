@@ -212,10 +212,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ onReveal, onComplete }) =>
     >
       {/* 1. Full-Bleed Dark Cinematic Watch Background Video with Zero-Flash Poster */}
       {!videoFailed && (
-        <div className="preloader-video-wrap" aria-hidden="true">
+        <div className="preloader-video-wrap pointer-events-none select-none" aria-hidden="true">
           <video
             ref={videoRef}
-            className="preloader-video"
+            className="preloader-video pointer-events-none select-none"
             poster="/images/preload_poster.webp"
             autoPlay
             muted
@@ -223,6 +223,12 @@ export const Preloader: React.FC<PreloaderProps> = ({ onReveal, onComplete }) =>
             playsInline
             preload="auto"
             disablePictureInPicture
+            disableRemotePlayback
+            controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+            onContextMenu={(e) => e.preventDefault()}
+            tabIndex={-1}
+            aria-hidden="true"
+            data-adobe-extension-disable="true"
             onError={() => setVideoFailed(true)}
           >
             <source src="/videos/preload_video.mp4" type="video/mp4" />

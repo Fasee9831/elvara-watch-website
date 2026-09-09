@@ -138,28 +138,28 @@ export const MovementReveal: React.FC = () => {
         {/* Floating Luxury UI & Telemetry Overlay (Clears Fixed Navigation) */}
         <div className="scene-overlay-hud">
           {/* Top HUD: Assembly Title & Interactive Phase Jump Rail */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-4">
-            <div className="flex items-center space-x-3 bg-black/60 backdrop-blur-2xl px-5 py-2.5 border border-white/10 rounded-full shadow-2xl">
-              <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
-              <span className="font-metadata text-xs tracking-[0.25em] text-[var(--color-text-primary)]">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-2 sm:gap-4">
+            <div className="flex items-center space-x-2.5 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-3.5 sm:px-5 py-1.5 sm:py-2.5 border border-white/10 rounded-full shadow-2xl">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--color-accent)] animate-pulse shrink-0" />
+              <span className="font-metadata text-[0.62rem] sm:text-xs tracking-[0.2em] text-[var(--color-text-primary)]">
                 CHAPTER III • CALIBRE 02-AU ASSEMBLY
               </span>
               <span className="text-white/20">|</span>
-              <span className="font-metadata text-xs text-[var(--color-accent)] font-medium">
+              <span className="font-metadata text-[0.62rem] sm:text-xs text-[var(--color-accent)] font-medium whitespace-nowrap">
                 28,800 VPH • 4.0 HZ
               </span>
             </div>
 
             {/* Step Jump Rail */}
-            <div className="flex items-center space-x-3 bg-black/60 backdrop-blur-2xl px-6 py-2.5 border border-white/10 rounded-full shadow-2xl">
+            <div className="flex items-center space-x-2 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-3.5 sm:px-6 py-1.5 sm:py-2.5 border border-white/10 rounded-full shadow-2xl">
               {PHASES.map((phase, idx) => {
                 const isActive = activePhaseIdx === idx;
                 const isPast = activePhaseIdx > idx;
 
                 return (
-                  <div key={phase.id} className="flex items-center space-x-3">
-                    <div className="flex flex-col space-y-1 items-center">
-                      <div className="h-[3px] w-12 md:w-16 bg-white/10 rounded-full overflow-hidden">
+                  <div key={phase.id} className="flex items-center space-x-2 sm:space-x-3">
+                    <div className="flex flex-col space-y-0.5 sm:space-y-1 items-center">
+                      <div className="h-[2.5px] sm:h-[3px] w-9 xs:w-11 sm:w-14 md:w-16 bg-white/10 rounded-full overflow-hidden">
                         <div
                           className={`h-full transition-all duration-300 rounded-full ${
                             isActive
@@ -171,7 +171,7 @@ export const MovementReveal: React.FC = () => {
                         />
                       </div>
                       <span
-                        className={`font-metadata text-[0.55rem] tracking-wider text-center ${
+                        className={`font-metadata text-[0.48rem] sm:text-[0.55rem] tracking-wider text-center ${
                           isActive
                             ? 'text-[var(--color-accent)] font-semibold'
                             : 'text-[var(--color-text-muted)]'
@@ -190,55 +190,55 @@ export const MovementReveal: React.FC = () => {
           </div>
 
           {/* Center-Left / Bottom Floating Dynamic Narrative Glass Card */}
-          <div className="relative max-w-md self-start my-auto pointer-events-auto">
+          <div className="relative max-w-md self-start my-auto pointer-events-auto w-full sm:w-auto max-h-[calc(100dvh-var(--header-safe-top)-90px)] overflow-y-auto custom-scrollbar">
             {PHASES.map((phase, idx) => {
               const isActive = activePhaseIdx === idx;
 
               return (
                 <div
                   key={phase.id}
-                  className={`glass-panel-luxury p-4 sm:p-5 shadow-2xl phase-narrative-card ${
+                  className={`glass-panel-luxury p-3.5 sm:p-5 shadow-2xl phase-narrative-card ${
                     isActive
                       ? 'opacity-100 translate-y-0 relative phase-card-active'
                       : 'opacity-0 translate-y-6 absolute inset-0 pointer-events-none phase-card-inactive'
                   }`}
                 >
                   {/* Step & Eyebrow Badge (0.06s delay) */}
-                  <div className="flex items-center space-x-2 mb-2 phase-text-item phase-text-badge">
-                    <span className="font-metadata text-[0.58rem] sm:text-[0.62rem] text-[var(--color-accent)] border border-white/15 px-2 py-0.5 bg-white/5 rounded-full">
+                  <div className="flex items-center space-x-2 mb-1.5 sm:mb-2 phase-text-item phase-text-badge">
+                    <span className="font-metadata text-[0.54rem] sm:text-[0.62rem] text-[var(--color-accent)] border border-white/15 px-2 py-0.5 bg-white/5 rounded-full">
                       {phase.step}
                     </span>
-                    <span className="font-eyebrow text-[0.58rem] sm:text-[0.62rem] tracking-[0.2em] text-[var(--color-text-muted)]">
+                    <span className="font-eyebrow text-[0.54rem] sm:text-[0.62rem] tracking-[0.2em] text-[var(--color-text-muted)]">
                       {phase.eyebrow}
                     </span>
                   </div>
 
                   {/* Title with Directional Reveal (0.13s delay) */}
-                  <h3 className="font-cinzel text-lg sm:text-xl lg:text-2xl text-gold-bright font-light leading-tight mb-1 text-shadow-cinematic phase-text-item phase-text-title">
+                  <h3 className="font-cinzel text-base sm:text-xl lg:text-2xl text-gold-bright font-light leading-tight mb-1 text-shadow-cinematic phase-text-item phase-text-title">
                     {phase.title}
                   </h3>
 
                   {/* Subtitle (0.21s delay) */}
-                  <p className="font-display italic text-xs lg:text-[0.82rem] text-[var(--color-accent)] mb-2 phase-text-item phase-text-subtitle">
+                  <p className="font-display italic text-[0.68rem] sm:text-xs lg:text-[0.82rem] text-[var(--color-accent)] mb-1.5 sm:mb-2 phase-text-item phase-text-subtitle">
                     {phase.subtitle}
                   </p>
 
                   {/* Narrative Body Description (0.29s delay, directional reveal) */}
-                  <p className="font-body text-[0.7rem] sm:text-[0.76rem] text-[var(--color-text-secondary)] font-light leading-relaxed mb-3 phase-text-item phase-text-desc">
+                  <p className="font-body text-[0.68rem] sm:text-[0.76rem] text-[var(--color-text-secondary)] font-light leading-relaxed mb-2.5 sm:mb-3 phase-text-item phase-text-desc">
                     {phase.description}
                   </p>
 
                   {/* Micro Specs Staggered Chips (0.37s, 0.45s, 0.53s delay) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2 pt-0.5">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-0.5">
                     {phase.specs.map((spec, sIdx) => (
                       <div
                         key={sIdx}
                         className="bg-white/[0.04] border border-white/10 p-1.5 sm:p-2 rounded-lg shadow-inner phase-text-item phase-chip"
                       >
-                        <span className="font-metadata block text-[0.5rem] sm:text-[0.54rem] text-[var(--color-text-muted)] mb-0.5">
+                        <span className="font-metadata block text-[0.46rem] sm:text-[0.54rem] text-[var(--color-text-muted)] mb-0.5 truncate">
                           {spec.label}
                         </span>
-                        <span className="font-mono-num text-[0.65rem] sm:text-[0.72rem] text-[var(--color-text-primary)] font-medium">
+                        <span className="font-mono-num text-[0.6rem] sm:text-[0.72rem] text-[var(--color-text-primary)] font-medium truncate block">
                           {spec.value}
                         </span>
                       </div>

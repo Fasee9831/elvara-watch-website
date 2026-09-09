@@ -519,29 +519,29 @@ export const BrandStatement: React.FC = () => {
             {/* 6. Micro Credo Pillars: Single-Row Architectural Glass Badges with Left/Right Reveals */}
             <div
               ref={badgesRef}
-              className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 max-w-2xl mx-auto mb-2 overflow-hidden px-3 py-1"
+              className="flex flex-wrap items-center justify-center gap-1 sm:gap-2.5 max-w-2xl mx-auto mb-2 overflow-hidden px-2 sm:px-3 py-1"
             >
               <div
-                className="credo-badge credo-badge-left bg-black/70 backdrop-blur-2xl px-2.5 sm:px-3 py-0.5 border border-[var(--color-accent)]/40 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
+                className="credo-badge credo-badge-left bg-black/70 backdrop-blur-2xl px-2 sm:px-3 py-0.5 border border-[var(--color-accent)]/40 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
                 style={{ opacity: 0, transform: 'translate3d(-60px, 0, 0)' }}
               >
-                <span className="font-metadata text-[0.56rem] sm:text-[0.62rem] text-[var(--color-accent)] tracking-wider font-semibold whitespace-nowrap">
+                <span className="font-metadata text-[0.52rem] xs:text-[0.56rem] sm:text-[0.62rem] text-[var(--color-accent)] tracking-wider font-semibold whitespace-nowrap">
                   100% HAND ASSEMBLED
                 </span>
               </div>
               <div
-                className="credo-badge credo-badge-right bg-black/70 backdrop-blur-2xl px-2.5 sm:px-3 py-0.5 border border-white/20 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
+                className="credo-badge credo-badge-right bg-black/70 backdrop-blur-2xl px-2 sm:px-3 py-0.5 border border-white/20 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
                 style={{ opacity: 0, transform: 'translate3d(60px, 0, 0)' }}
               >
-                <span className="font-metadata text-[0.56rem] sm:text-[0.62rem] text-white tracking-wider font-medium whitespace-nowrap">
+                <span className="font-metadata text-[0.52rem] xs:text-[0.56rem] sm:text-[0.62rem] text-white tracking-wider font-medium whitespace-nowrap">
                   LIFETIME ARCHIVE REGISTERED
                 </span>
               </div>
               <div
-                className="credo-badge credo-badge-center bg-black/70 backdrop-blur-2xl px-2.5 sm:px-3 py-0.5 border border-emerald-500/40 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
+                className="credo-badge credo-badge-center bg-black/70 backdrop-blur-2xl px-2 sm:px-3 py-0.5 border border-emerald-500/40 rounded-full shadow-xl will-change-[transform,opacity] transition-all duration-300"
                 style={{ opacity: 0, transform: 'translate3d(0, 24px, 0) scale(0.92)' }}
               >
-                <span className="font-metadata text-[0.56rem] sm:text-[0.62rem] text-emerald-400 tracking-wider font-medium whitespace-nowrap">
+                <span className="font-metadata text-[0.52rem] xs:text-[0.56rem] sm:text-[0.62rem] text-emerald-400 tracking-wider font-medium whitespace-nowrap">
                   GENEVA SEAL CERTIFIED
                 </span>
               </div>

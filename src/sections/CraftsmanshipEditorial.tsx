@@ -266,59 +266,63 @@ export const CraftsmanshipEditorial: React.FC = () => {
         }
       }
 
-      // Column 1 (left): Silky upward parallax scrub
-      if (col1Ref.current) {
-        gsap.fromTo(
-          col1Ref.current,
-          { y: 30 },
-          {
-            y: -30,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.5,
-            },
-          }
-        );
-      }
+      // Desktop-only column parallax scrub (avoids vertical spacing skew when columns are stacked on mobile)
+      const mm = gsap.matchMedia();
+      mm.add('(min-width: 768px)', () => {
+        // Column 1 (left): Silky upward parallax scrub
+        if (col1Ref.current) {
+          gsap.fromTo(
+            col1Ref.current,
+            { y: 30 },
+            {
+              y: -30,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5,
+              },
+            }
+          );
+        }
 
-      // Column 2 (center): Subtle counter-rhythm parallax scrub
-      if (col2Ref.current) {
-        gsap.fromTo(
-          col2Ref.current,
-          { y: -20 },
-          {
-            y: 20,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.5,
-            },
-          }
-        );
-      }
+        // Column 2 (center): Subtle counter-rhythm parallax scrub
+        if (col2Ref.current) {
+          gsap.fromTo(
+            col2Ref.current,
+            { y: -20 },
+            {
+              y: 20,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5,
+              },
+            }
+          );
+        }
 
-      // Column 3 (right): Dynamic parallax scrub
-      if (col3Ref.current) {
-        gsap.fromTo(
-          col3Ref.current,
-          { y: 40 },
-          {
-            y: -40,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.5,
-            },
-          }
-        );
-      }
+        // Column 3 (right): Dynamic parallax scrub
+        if (col3Ref.current) {
+          gsap.fromTo(
+            col3Ref.current,
+            { y: 40 },
+            {
+              y: -40,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.5,
+              },
+            }
+          );
+        }
+      });
 
       // Inner image smooth depth scrub (scoped to section trigger for maximum performance)
       const imgs = sectionRef.current.querySelectorAll('.parallax-inner');
@@ -377,12 +381,12 @@ export const CraftsmanshipEditorial: React.FC = () => {
   const currentCardRectRef = useRef<DOMRect | null>(null);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isReducedMotionPreferred()) return;
+    if (isReducedMotionPreferred() || !window.matchMedia('(pointer: fine)').matches) return;
     currentCardRectRef.current = e.currentTarget.getBoundingClientRect();
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isReducedMotionPreferred()) return;
+    if (isReducedMotionPreferred() || !window.matchMedia('(pointer: fine)').matches) return;
     const card = e.currentTarget;
     const clientX = e.clientX;
     const clientY = e.clientY;
@@ -414,7 +418,7 @@ export const CraftsmanshipEditorial: React.FC = () => {
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     currentCardRectRef.current = null;
-    if (isReducedMotionPreferred()) return;
+    if (isReducedMotionPreferred() || !window.matchMedia('(pointer: fine)').matches) return;
     if (tiltRafRef.current) cancelAnimationFrame(tiltRafRef.current);
     gsap.to(e.currentTarget, {
       rotationX: 0,

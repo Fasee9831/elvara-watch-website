@@ -29,12 +29,12 @@ const LuxuryDropdown: React.FC<{
     <div className="relative z-30" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-36 sm:w-44 bg-black/80 border border-white/15 text-[0.62rem] sm:text-[0.68rem] text-white px-2 py-1 rounded-md hover:border-white/35 transition-all shadow-inner cursor-pointer"
+        className="flex items-center justify-between w-28 xs:w-36 sm:w-44 bg-black/80 border border-white/15 text-[0.55rem] xs:text-[0.62rem] sm:text-[0.68rem] text-white px-1.5 xs:px-2 py-0.5 sm:py-1 rounded-md hover:border-white/35 transition-all shadow-inner cursor-pointer"
         type="button"
       >
         <span className="truncate font-medium">{selectedOption.number} — {selectedOption.name}</span>
         <svg
-          className={`w-3 h-3 transition-transform duration-300 ml-1 flex-shrink-0 text-white/60 ${isOpen ? 'rotate-180 text-[var(--color-accent)]' : ''}`}
+          className={`w-2.5 h-2.5 sm:w-3 sm:h-3 transition-transform duration-300 ml-1 flex-shrink-0 text-white/60 ${isOpen ? 'rotate-180 text-[var(--color-accent)]' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ const LuxuryDropdown: React.FC<{
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-1 w-52 sm:w-56 bg-[#0C0C0B]/98 backdrop-blur-xl border border-white/15 rounded-lg shadow-2xl overflow-hidden z-50 animate-fade-in-up">
+        <div className="absolute top-full right-0 mt-1 w-44 xs:w-52 sm:w-56 bg-[#0C0C0B]/98 backdrop-blur-xl border border-white/15 rounded-lg shadow-2xl overflow-hidden z-50 animate-fade-in-up">
           <div className="max-h-48 overflow-y-auto py-1 divide-y divide-white/5">
             {options.map((opt) => (
               <button
@@ -53,13 +53,13 @@ const LuxuryDropdown: React.FC<{
                   onChange(opt.id);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-2.5 py-1.5 text-[0.62rem] transition-colors hover:bg-white/10 flex flex-col cursor-pointer ${
+                className={`w-full text-left px-2.5 py-1.5 text-[0.58rem] sm:text-[0.62rem] transition-colors hover:bg-white/10 flex flex-col cursor-pointer ${
                   opt.id === value ? `${accentClass} bg-white/[0.04]` : 'text-white/80'
                 }`}
                 type="button"
               >
                 <div className="font-semibold">{opt.number} — {opt.name}</div>
-                <div className="text-[0.55rem] text-white/45 truncate">{opt.movementType}</div>
+                <div className="text-[0.52rem] sm:text-[0.55rem] text-white/45 truncate">{opt.movementType}</div>
               </button>
             ))}
           </div>
@@ -292,18 +292,18 @@ export const WatchComparator: React.FC = () => {
             </p>
           </div>
 
-          {/* Watch Cards Row (Compact 2-Column) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 mb-1.5 sm:mb-2">
+          {/* Watch Cards Row (Compact 2-Column on all viewports) */}
+          <div className="grid grid-cols-2 gap-2 sm:gap-2.5 mb-1.5 sm:mb-2">
             {/* Watch A Card (Gold Theme) */}
             <div
               ref={cardARef}
               className="comparator-card bg-[#0B0B0A]/90 border border-[var(--color-accent)]/25 rounded-xl p-2 sm:p-2.5 flex flex-col justify-between shadow-lg"
             >
               <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="font-metadata text-[0.54rem] text-[var(--color-accent)] font-semibold tracking-wider flex items-center gap-1">
+                <div className="flex justify-between items-center mb-1 gap-1">
+                  <span className="font-metadata text-[0.48rem] sm:text-[0.54rem] text-[var(--color-accent)] font-semibold tracking-wider flex items-center gap-1 shrink-0">
                     <span className="w-1 h-1 rounded-full bg-[var(--color-accent)]" />
-                    TIMEPIECE A
+                    <span className="hidden xs:inline">TIMEPIECE</span> A
                   </span>
                   <LuxuryDropdown
                     value={watchAId}
@@ -313,7 +313,7 @@ export const WatchComparator: React.FC = () => {
                   />
                 </div>
 
-                <div className="h-16 sm:h-20 w-full rounded-lg overflow-hidden mb-1 bg-[#141413] border border-white/10 relative">
+                <div className="h-14 xs:h-16 sm:h-20 w-full rounded-lg overflow-hidden mb-1 bg-[#141413] border border-white/10 relative">
                   <div className="absolute inset-0 image-loading-placeholder pointer-events-none z-0" />
                   <img
                     key={watchA.id}
@@ -325,11 +325,11 @@ export const WatchComparator: React.FC = () => {
                   />
                 </div>
 
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-cinzel text-xs sm:text-sm text-gold-bright font-medium truncate">
+                <div className="flex items-baseline justify-between gap-1">
+                  <h3 className="font-cinzel text-[0.65rem] xs:text-xs sm:text-sm text-gold-bright font-medium truncate">
                     {watchA.name}
                   </h3>
-                  <div className="font-mono-num text-[0.64rem] text-white font-semibold whitespace-nowrap">
+                  <div className="font-mono-num text-[0.56rem] xs:text-[0.64rem] text-white font-semibold whitespace-nowrap">
                     {format(watchA)}
                   </div>
                 </div>
@@ -342,10 +342,10 @@ export const WatchComparator: React.FC = () => {
               className="comparator-card bg-[#0B0B0A]/90 border border-white/15 rounded-xl p-2 sm:p-2.5 flex flex-col justify-between shadow-lg"
             >
               <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="font-metadata text-[0.54rem] text-white/75 font-semibold tracking-wider flex items-center gap-1">
+                <div className="flex justify-between items-center mb-1 gap-1">
+                  <span className="font-metadata text-[0.48rem] sm:text-[0.54rem] text-white/75 font-semibold tracking-wider flex items-center gap-1 shrink-0">
                     <span className="w-1 h-1 rounded-full bg-white/60" />
-                    TIMEPIECE B
+                    <span className="hidden xs:inline">TIMEPIECE</span> B
                   </span>
                   <LuxuryDropdown
                     value={watchBId}
@@ -355,7 +355,7 @@ export const WatchComparator: React.FC = () => {
                   />
                 </div>
 
-                <div className="h-16 sm:h-20 w-full rounded-lg overflow-hidden mb-1 bg-[#141413] border border-white/10 relative">
+                <div className="h-14 xs:h-16 sm:h-20 w-full rounded-lg overflow-hidden mb-1 bg-[#141413] border border-white/10 relative">
                   <div className="absolute inset-0 image-loading-placeholder pointer-events-none z-0" />
                   <img
                     key={watchB.id}
@@ -367,11 +367,11 @@ export const WatchComparator: React.FC = () => {
                   />
                 </div>
 
-                <div className="flex items-baseline justify-between">
-                  <h3 className="font-cinzel text-xs sm:text-sm text-white font-medium truncate">
+                <div className="flex items-baseline justify-between gap-1">
+                  <h3 className="font-cinzel text-[0.65rem] xs:text-xs sm:text-sm text-white font-medium truncate">
                     {watchB.name}
                   </h3>
-                  <div className="font-mono-num text-[0.64rem] text-white font-semibold whitespace-nowrap">
+                  <div className="font-mono-num text-[0.56rem] xs:text-[0.64rem] text-white font-semibold whitespace-nowrap">
                     {format(watchB)}
                   </div>
                 </div>

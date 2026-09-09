@@ -56,9 +56,11 @@ export const CollectorReviews: React.FC = () => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const stampRef = useRef<HTMLDivElement>(null);
   const currentProgressRef = useRef<number>(0);
+  const [progress, setProgress] = React.useState(0);
 
   // Progressive scroll-driven reveal (Multi-stage Chapter XI choreography)
   const handleProgress = useCallback((p: number) => {
+    setProgress(p);
     if (isReducedMotionPreferred()) {
       if (headerRef.current) {
         headerRef.current.style.opacity = '1';
@@ -212,8 +214,8 @@ export const CollectorReviews: React.FC = () => {
             </p>
           </div>
 
-          {/* Review Cards (3-Column Grid) */}
-          <div ref={cardsContainerRef} className="grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-3">
+          {/* Desktop Review Cards (3-Column Grid) */}
+          <div ref={cardsContainerRef} className="hidden md:grid md:grid-cols-3 gap-2.5 sm:gap-3">
             {REVIEWS.map((rev) => (
               <div
                 key={rev.id}
@@ -259,8 +261,73 @@ export const CollectorReviews: React.FC = () => {
             ))}
           </div>
 
+          {/* Mobile Single Active Review Card with Scroll Progression Dots */}
+          <div className="md:hidden flex flex-col items-center w-full">
+            {(() => {
+              const activeIdx = Math.min(2, Math.max(0, Math.floor(progress / 0.33)));
+              const rev = REVIEWS[activeIdx] || REVIEWS[0];
+
+              return (
+                <div className="w-full bg-[#0B0B0A]/95 border border-[var(--color-accent)]/30 rounded-xl p-3 flex flex-col justify-between shadow-xl backdrop-blur-md">
+                  <div>
+                    {/* Top Badge & Rating */}
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="font-metadata text-[0.44rem] text-[var(--color-accent)] bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 px-2 py-0.5 rounded-full font-semibold">
+                        {rev.tag}
+                      </span>
+                      <div className="flex text-[var(--color-accent)] text-[0.58rem] tracking-tight">
+                        {'★'.repeat(rev.stars)}
+                      </div>
+                    </div>
+
+                    {/* Main Quote */}
+                    <p className="font-serif italic text-[0.72rem] text-white/90 leading-relaxed mb-1.5 font-light">
+                      "{rev.quote}"
+                    </p>
+
+                    {/* Highlight Callout */}
+                    <p className="font-sans text-[0.52rem] text-white/55 leading-snug bg-white/[0.03] border border-white/5 rounded-lg p-1.5 mb-2">
+                      {rev.highlight}
+                    </p>
+                  </div>
+
+                  {/* Author Info */}
+                  <div className="flex items-center space-x-2 pt-1.5 border-t border-white/10">
+                    <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-cinzel text-[0.52rem] text-[var(--color-accent)] font-semibold flex-shrink-0">
+                      {rev.initials}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-cinzel text-[0.62rem] text-white font-medium truncate">
+                        {rev.author}
+                      </div>
+                      <div className="font-metadata text-[0.44rem] text-white/45 truncate">
+                        {rev.location} · <span className="text-[var(--color-accent)]/80">{rev.model}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* Mobile Progress Dots */}
+            <div className="flex items-center space-x-2 mt-2">
+              {REVIEWS.map((_, i) => {
+                const activeIdx = Math.min(2, Math.max(0, Math.floor(progress / 0.33)));
+                const isActive = activeIdx === i;
+                return (
+                  <div
+                    key={i}
+                    className={`h-1 rounded-full transition-all duration-300 ${
+                      isActive ? 'w-5 bg-[var(--color-accent)]' : 'w-1.5 bg-white/20'
+                    }`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
           {/* Bottom Trust Stamp */}
-          <div ref={stampRef} className="flex items-center justify-center space-x-2 text-white/40 font-metadata text-[0.46rem] sm:text-[0.5rem] tracking-widest uppercase mt-2">
+          <div ref={stampRef} className="flex items-center justify-center space-x-2 text-white/40 font-metadata text-[0.44rem] sm:text-[0.5rem] tracking-widest uppercase mt-1.5 sm:mt-2">
             <span>GENEVA REGISTERED ARCHIVE</span>
             <span>•</span>
             <span>100% VERIFIED ACQUISITIONS</span>

@@ -71,13 +71,19 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, items }
           initial="closed"
           animate="open"
           exit="closed"
-          className="fixed inset-0 z-50 bg-[var(--color-bg)]/98 backdrop-blur-2xl flex flex-col justify-between p-6 md:p-12 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-[var(--color-bg)]/98 backdrop-blur-2xl flex flex-col justify-between p-6 sm:p-8 md:p-12 overflow-y-auto overscroll-contain"
+          style={{
+            paddingTop: 'max(1.5rem, calc(env(safe-area-inset-top, 0px) + 0.75rem))',
+            paddingBottom: 'max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem))',
+            paddingLeft: 'max(1.5rem, calc(env(safe-area-inset-left, 0px) + 0.5rem))',
+            paddingRight: 'max(1.5rem, calc(env(safe-area-inset-right, 0px) + 0.5rem))',
+          }}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Menu"
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between shrink-0">
             <span className="font-eyebrow text-xs text-[var(--color-accent)] tracking-widest font-semibold">
               ÉLVARA • GENÈVE
             </span>
@@ -85,7 +91,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, items }
               <CurrencySelector variant="full" />
               <button
                 onClick={onClose}
-                className="p-2.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-accent)] cursor-pointer bg-white/5 border border-white/10 rounded-lg"
+                className="p-2.5 text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-accent)] cursor-pointer bg-white/5 border border-white/10 rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label="Close menu"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -97,13 +103,14 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, items }
           </div>
 
           {/* Navigation Links */}
-          <nav className="my-auto py-8 flex flex-col space-y-4">
+          <nav className="my-auto py-6 sm:py-8 flex flex-col space-y-2 sm:space-y-3 md:space-y-4">
             {items.map((item, i) => (
               <motion.div key={item.label} custom={i} variants={itemVariants}>
                 <a
                   href={item.href}
                   onClick={(e) => handleItemClick(e, item.href)}
-                  className="block font-display text-3xl sm:text-4xl text-white hover:text-[var(--color-accent)] transition-colors font-light tracking-wide py-1.5 focus-visible:outline-none"
+                  className="block font-display text-2xl xs:text-3xl sm:text-4xl text-white hover:text-[var(--color-accent)] transition-colors font-light tracking-wide py-1 focus-visible:outline-none"
+                  style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.25rem)' }}
                 >
                   {item.label}
                 </a>
@@ -112,7 +119,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, items }
           </nav>
 
           {/* Footer Info & Creator Credit */}
-          <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="border-t border-white/10 pt-5 sm:pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shrink-0">
             <div>
               <span className="font-eyebrow text-xs tracking-widest text-[var(--color-accent)] block mb-1">
                 DESIGNED & DEVELOPED BY
@@ -127,7 +134,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose, items }
             <a
               href="#footer"
               onClick={(e) => handleItemClick(e, '#footer')}
-              className="w-full sm:w-auto px-6 py-3 bg-[var(--color-accent)] text-[#0A0A09] font-metadata text-xs font-semibold tracking-widest uppercase rounded-full text-center"
+              className="w-full sm:w-auto px-6 py-3 bg-[var(--color-accent)] text-[#0A0A09] font-metadata text-xs font-semibold tracking-widest uppercase rounded-full text-center min-h-[44px] flex items-center justify-center cursor-pointer"
             >
               Request Consultation
             </a>

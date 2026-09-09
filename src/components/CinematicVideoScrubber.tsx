@@ -87,6 +87,13 @@ export const CinematicVideoScrubber: React.FC<CinematicVideoScrubberProps> = ({
           muted
           playsInline
           preload="metadata"
+          disablePictureInPicture
+          disableRemotePlayback
+          controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+          onContextMenu={(e) => e.preventDefault()}
+          tabIndex={-1}
+          aria-hidden="true"
+          data-adobe-extension-disable="true"
           onError={(e) => {
             console.error(`Failed to load video asset at ${src}`, e);
             setHasError(true);

@@ -35,7 +35,7 @@ export const App: React.FC = () => {
   return (
     <CurrencyProvider>
       <SmoothScrollProvider>
-        <div className="site-shell relative min-h-screen w-full max-w-none bg-[#070706] text-[var(--color-text-primary)] selection:bg-[var(--color-accent)] selection:text-[var(--color-bg)] overflow-x-clip">
+        <div className="site-shell relative min-h-screen w-full max-w-none bg-[#070706] text-[var(--color-text-primary)] select-none overflow-x-clip">
         {/* Cinematic Preloader */}
         {isPreloaderVisible && (
           <Preloader

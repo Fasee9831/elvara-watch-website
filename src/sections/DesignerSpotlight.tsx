@@ -375,15 +375,15 @@ export const DesignerSpotlight: React.FC = () => {
             <div className="absolute top-0 right-0 w-36 h-36 bg-[var(--color-accent)]/8 rounded-full blur-3xl pointer-events-none" />
 
             {/* Console Navigation Bar: Interactive Dimension Tabs */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-1.5 pb-2 border-b border-white/[0.08] mb-2 sm:mb-2.5">
-              <div className="flex items-center space-x-1 bg-black/40 border border-white/10 p-0.5 rounded-lg">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-1.5 pb-1.5 sm:pb-2 border-b border-white/[0.08] mb-1.5 sm:mb-2.5">
+              <div className="flex items-center space-x-0.5 sm:space-x-1 bg-black/40 border border-white/10 p-0.5 rounded-lg w-full sm:w-auto justify-between sm:justify-start">
                 {DIMENSIONS.map((dim, idx) => {
                   const isActive = activeTab === idx;
                   return (
                     <button
                       key={dim.id}
                       onClick={() => setActiveTab(idx)}
-                      className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[0.46rem] sm:text-[0.5rem] font-metadata tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+                      className={`px-1.5 xs:px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md text-[0.42rem] xs:text-[0.46rem] sm:text-[0.5rem] font-metadata tracking-tight sm:tracking-wider uppercase transition-all duration-300 cursor-pointer flex-1 sm:flex-initial text-center ${
                         isActive
                           ? 'bg-[var(--color-accent)] text-[#070706] font-semibold shadow-md'
                           : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
@@ -396,9 +396,9 @@ export const DesignerSpotlight: React.FC = () => {
               </div>
 
               {/* Status Badge */}
-              <div className="flex items-center space-x-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded">
+              <div className="flex items-center space-x-1.5 bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 rounded shrink-0">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-metadata text-[0.42rem] sm:text-[0.46rem] text-emerald-300 tracking-wider font-medium uppercase">
+                <span className="font-metadata text-[0.4rem] sm:text-[0.46rem] text-emerald-300 tracking-wider font-medium uppercase">
                   ATELIER VERIFIED • {currentDimension.badge}
                 </span>
               </div>
