@@ -73,8 +73,9 @@ export const CanvasFrameScrubber: React.FC<CanvasFrameScrubberProps> = ({
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
+    ctx.imageSmoothingQuality = isMobile ? 'low' : 'medium';
 
     const cw = canvas.width;
     const ch = canvas.height;
@@ -180,7 +181,8 @@ export const CanvasFrameScrubber: React.FC<CanvasFrameScrubberProps> = ({
       const canvas = canvasRef.current;
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isMobile = window.innerWidth < 768;
+      const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.5) : Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = (rect.width || window.innerWidth) * dpr;
       canvas.height = (rect.height || window.innerHeight) * dpr;
 
@@ -188,7 +190,7 @@ export const CanvasFrameScrubber: React.FC<CanvasFrameScrubberProps> = ({
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
     return () => window.removeEventListener('resize', handleResize);
   }, [renderFrameIndex]);
 

@@ -37,13 +37,14 @@ export const initSmoothScroll = (options: SmoothScrollOptions = {}): Lenis | nul
   }
 
   const lenis = new Lenis({
-    duration: options.duration ?? 1.4,
+    duration: options.duration ?? 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     orientation: 'vertical',
     gestureOrientation: 'vertical',
     smoothWheel: options.smoothWheel ?? true,
     wheelMultiplier: 0.9,
-    touchMultiplier: 1.6,
+    touchMultiplier: 1.0,
+    syncTouch: false,
     infinite: false,
   });
 
@@ -55,12 +56,12 @@ export const initSmoothScroll = (options: SmoothScrollOptions = {}): Lenis | nul
   };
   lenis.on('scroll', onScroll);
 
-  // Sync Lenis RAF with GSAP Ticker
+  // Sync Lenis RAF with GSAP Ticker with mobile-optimized lag smoothing
   const updateTicker = (time: number) => {
     lenis.raf(time * 1000);
   };
   gsap.ticker.add(updateTicker);
-  gsap.ticker.lagSmoothing(0);
+  gsap.ticker.lagSmoothing(500, 33);
 
   // Smooth scroll for anchor links using centralized navigation engine
   const handleAnchorClick = (e: MouseEvent) => {
