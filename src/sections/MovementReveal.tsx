@@ -138,28 +138,28 @@ export const MovementReveal: React.FC = () => {
         {/* Floating Luxury UI & Telemetry Overlay (Clears Fixed Navigation) */}
         <div className="scene-overlay-hud">
           {/* Top HUD: Assembly Title & Interactive Phase Jump Rail */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-2 sm:gap-4">
-            <div className="flex items-center space-x-2.5 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-3.5 sm:px-5 py-1.5 sm:py-2.5 border border-white/10 rounded-full shadow-2xl">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full gap-1.5 sm:gap-4">
+            <div className="flex items-center space-x-2 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-2.5 xs:px-3.5 sm:px-5 py-1 sm:py-2 border border-white/10 rounded-full shadow-2xl">
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--color-accent)] animate-pulse shrink-0" />
-              <span className="font-metadata text-[0.62rem] sm:text-xs tracking-[0.2em] text-[var(--color-text-primary)]">
-                CHAPTER III • CALIBRE 02-AU ASSEMBLY
+              <span className="font-metadata text-[0.48rem] xs:text-[0.55rem] sm:text-xs tracking-[0.14em] sm:tracking-[0.2em] text-[var(--color-text-primary)]">
+                CHAPTER III • CALIBRE 02-AU
               </span>
               <span className="text-white/20">|</span>
-              <span className="font-metadata text-[0.62rem] sm:text-xs text-[var(--color-accent)] font-medium whitespace-nowrap">
-                28,800 VPH • 4.0 HZ
+              <span className="font-metadata text-[0.48rem] xs:text-[0.55rem] sm:text-xs text-[var(--color-accent)] font-medium whitespace-nowrap">
+                28,800 VPH
               </span>
             </div>
 
             {/* Step Jump Rail */}
-            <div className="flex items-center space-x-2 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-3.5 sm:px-6 py-1.5 sm:py-2.5 border border-white/10 rounded-full shadow-2xl">
+            <div className="flex items-center space-x-1.5 xs:space-x-2 sm:space-x-3 bg-black/60 backdrop-blur-2xl px-2.5 xs:px-3.5 sm:px-6 py-1 sm:py-2 border border-white/10 rounded-full shadow-2xl">
               {PHASES.map((phase, idx) => {
                 const isActive = activePhaseIdx === idx;
                 const isPast = activePhaseIdx > idx;
 
                 return (
-                  <div key={phase.id} className="flex items-center space-x-2 sm:space-x-3">
+                  <div key={phase.id} className="flex items-center space-x-1.5 xs:space-x-2 sm:space-x-3">
                     <div className="flex flex-col space-y-0.5 sm:space-y-1 items-center">
-                      <div className="h-[2.5px] sm:h-[3px] w-9 xs:w-11 sm:w-14 md:w-16 bg-white/10 rounded-full overflow-hidden">
+                      <div className="h-[2px] sm:h-[3px] w-6 xs:w-8 sm:w-14 md:w-16 bg-white/10 rounded-full overflow-hidden">
                         <div
                           className={`h-full transition-all duration-300 rounded-full ${
                             isActive
@@ -171,17 +171,17 @@ export const MovementReveal: React.FC = () => {
                         />
                       </div>
                       <span
-                        className={`font-metadata text-[0.48rem] sm:text-[0.55rem] tracking-wider text-center ${
+                        className={`font-metadata text-[0.42rem] xs:text-[0.48rem] sm:text-[0.55rem] tracking-wider text-center ${
                           isActive
                             ? 'text-[var(--color-accent)] font-semibold'
                             : 'text-[var(--color-text-muted)]'
                         }`}
                       >
-                        PHASE 0{idx + 1}
+                        0{idx + 1}
                       </span>
                     </div>
                     {idx < PHASES.length - 1 && (
-                      <span className="text-white/20 text-xs">•</span>
+                      <span className="text-white/20 text-[0.55rem]">•</span>
                     )}
                   </div>
                 );

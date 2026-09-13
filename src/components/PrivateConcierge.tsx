@@ -1148,7 +1148,7 @@ export const PrivateConcierge: React.FC = () => {
             exit="closed"
             role="dialog"
             aria-label="ÉLVARA Private Concierge"
-            className="fixed z-[96] right-3 sm:right-6 bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] sm:bottom-20 w-[calc(100vw-24px)] sm:w-[360px] h-[430px] max-h-[calc(100vh-90px)] max-h-[calc(100dvh-90px)] bg-[#0C0C0B]/98 backdrop-blur-2xl border border-[var(--color-accent)]/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white font-sans"
+            className="fixed z-[96] right-2.5 sm:right-6 bottom-[calc(4.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-20 w-[calc(100vw-20px)] sm:w-[360px] h-[450px] max-h-[calc(100vh-80px)] max-h-[calc(100dvh-80px)] bg-[#0C0C0B]/98 backdrop-blur-2xl border border-[var(--color-accent)]/30 rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white font-sans"
             style={{
               boxShadow: '0 24px 60px rgba(0, 0, 0, 0.92), 0 0 32px rgba(229, 195, 120, 0.08)',
             }}
@@ -1186,7 +1186,7 @@ export const PrivateConcierge: React.FC = () => {
 
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-5 h-5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/60 hover:text-white flex items-center justify-center text-[0.65rem] transition-colors cursor-pointer shrink-0"
+                className="w-6 h-6 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/60 hover:text-white flex items-center justify-center text-[0.65rem] transition-colors cursor-pointer shrink-0 min-h-[24px] min-w-[24px]"
                 aria-label="Close concierge"
                 type="button"
               >
@@ -1195,7 +1195,7 @@ export const PrivateConcierge: React.FC = () => {
             </div>
 
             {/* Conversation Messages Body */}
-            <div className="flex-1 min-h-0 overflow-y-auto px-3.5 py-3 space-y-3 custom-scrollbar text-[0.76rem] leading-relaxed">
+            <div className="flex-1 min-h-0 overflow-y-auto px-3.5 py-3 space-y-3 custom-scrollbar text-[0.76rem] leading-relaxed overscroll-contain">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -1235,7 +1235,7 @@ export const PrivateConcierge: React.FC = () => {
                         >
                           <button
                             onClick={() => handleActionClick(msg.action!.targetSection)}
-                            className="inline-flex items-center space-x-1.5 px-2.5 py-1 bg-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/25 border border-[var(--color-accent)]/40 hover:border-[var(--color-accent)] text-[var(--color-accent)] hover:text-white rounded-md font-metadata text-[0.52rem] tracking-[0.16em] uppercase font-semibold transition-all cursor-pointer shadow-sm group"
+                            className="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/25 border border-[var(--color-accent)]/40 hover:border-[var(--color-accent)] text-[var(--color-accent)] hover:text-white rounded-md font-metadata text-[0.52rem] tracking-[0.16em] uppercase font-semibold transition-all cursor-pointer shadow-sm group min-h-[30px]"
                             type="button"
                           >
                             <span>{msg.action.label}</span>
@@ -1255,7 +1255,7 @@ export const PrivateConcierge: React.FC = () => {
                             <button
                               key={i}
                               onClick={() => handleOptionClick(opt)}
-                              className="px-2 py-0.5 rounded-md bg-[#161615] hover:bg-[var(--color-accent)]/20 border border-white/10 hover:border-[var(--color-accent)]/60 text-[0.62rem] text-white/80 hover:text-white transition-all cursor-pointer font-metadata uppercase tracking-wider"
+                              className="px-2.5 py-1 rounded-md bg-[#161615] hover:bg-[var(--color-accent)]/20 border border-white/10 hover:border-[var(--color-accent)]/60 text-[0.62rem] text-white/80 hover:text-white transition-all cursor-pointer font-metadata uppercase tracking-wider min-h-[28px] flex items-center"
                               type="button"
                             >
                               {opt.label}
@@ -1294,7 +1294,7 @@ export const PrivateConcierge: React.FC = () => {
                       <button
                         key={prompt.id}
                         onClick={() => handleSend(prompt.query)}
-                        className="text-left px-2.5 py-1 rounded-md bg-[#111110] hover:bg-white/[0.08] border border-white/10 hover:border-[var(--color-accent)]/50 text-[0.62rem] text-white/75 hover:text-white transition-all cursor-pointer font-sans"
+                        className="text-left px-2.5 py-1.5 rounded-md bg-[#111110] hover:bg-white/[0.08] border border-white/10 hover:border-[var(--color-accent)]/50 text-[0.62rem] text-white/75 hover:text-white transition-all cursor-pointer font-sans min-h-[30px] flex items-center"
                         type="button"
                       >
                         {prompt.label}
@@ -1326,14 +1326,14 @@ export const PrivateConcierge: React.FC = () => {
                     ? 'Typing...'
                     : 'Ask about watches, prices, currencies...'
                 }
-                className="flex-1 bg-[#121211] border border-white/15 focus:border-[var(--color-accent)] rounded-lg px-2.5 py-1.5 text-xs text-white placeholder:text-white/35 focus:outline-none transition-colors disabled:opacity-50"
+                className="flex-1 bg-[#121211] border border-white/15 focus:border-[var(--color-accent)] rounded-lg px-2.5 py-2 text-base sm:text-xs text-white placeholder:text-white/35 focus:outline-none transition-colors disabled:opacity-50"
                 aria-label="Message ÉLVARA Concierge"
               />
 
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isAnyMessageTyping || isThinking}
-                className="px-3 py-1.5 bg-[var(--color-accent)]/20 hover:bg-[var(--color-accent)] disabled:opacity-25 border border-[var(--color-accent)]/40 hover:border-[var(--color-accent)] text-[var(--color-accent)] hover:text-[#0A0A09] rounded-lg text-xs font-semibold transition-all cursor-pointer disabled:cursor-not-allowed flex items-center justify-center"
+                className="px-3.5 py-2 bg-[var(--color-accent)]/20 hover:bg-[var(--color-accent)] disabled:opacity-25 border border-[var(--color-accent)]/40 hover:border-[var(--color-accent)] text-[var(--color-accent)] hover:text-[#0A0A09] rounded-lg text-xs font-semibold transition-all cursor-pointer disabled:cursor-not-allowed flex items-center justify-center min-w-[36px]"
                 aria-label="Send message"
               >
                 →

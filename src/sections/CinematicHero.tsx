@@ -322,13 +322,13 @@ export const CinematicHero: React.FC = () => {
           </div>
 
           {/* Bottom HUD: Progress Scrubber Bar & Frame Counter */}
-          <div className="flex justify-between items-end w-full px-[4vw] max-w-[1600px] mx-auto box-border">
+          <div className="flex justify-between items-end w-full px-3 xs:px-4 sm:px-[4vw] max-w-[1600px] mx-auto box-border gap-2">
             {/* Real-time perspective counter */}
-            <div className="bg-black/60 backdrop-blur-2xl px-5 py-2.5 border border-white/10 rounded-2xl shadow-xl">
-              <span className="font-metadata text-[0.62rem] text-[var(--color-text-muted)] tracking-[0.2em] block">
+            <div className="bg-black/60 backdrop-blur-2xl px-3 sm:px-5 py-1.5 sm:py-2.5 border border-white/10 rounded-xl sm:rounded-2xl shadow-xl">
+              <span className="font-metadata text-[0.48rem] sm:text-[0.62rem] text-[var(--color-text-muted)] tracking-wider sm:tracking-[0.2em] block">
                 ATELIER PERSPECTIVE
               </span>
-              <div className="font-mono-num text-sm text-[var(--color-text-primary)] font-medium">
+              <div className="font-mono-num text-xs sm:text-sm text-[var(--color-text-primary)] font-medium">
                 <span className="text-[var(--color-accent)] font-semibold">
                   {String(Math.min(180, Math.max(1, Math.round(scrollProgress * 179) + 1))).padStart(3, '0')}°
                 </span>
@@ -339,7 +339,7 @@ export const CinematicHero: React.FC = () => {
             {/* Center Exploration Prompt */}
             <div
               ref={scrollIndicatorRef}
-              className="flex flex-col items-center transition-opacity duration-500 bg-black/50 backdrop-blur-2xl px-6 py-2.5 border border-white/10 rounded-full shadow-lg"
+              className="hidden sm:flex flex-col items-center transition-opacity duration-500 bg-black/50 backdrop-blur-2xl px-6 py-2.5 border border-white/10 rounded-full shadow-lg"
             >
               <span className="font-metadata text-[var(--color-text-secondary)] tracking-[0.3em] text-[0.6rem] mb-1 uppercase">
                 EXPLORE TIMEPIECE
@@ -348,11 +348,11 @@ export const CinematicHero: React.FC = () => {
             </div>
 
             {/* Calibre Reference Code */}
-            <div className="bg-black/60 backdrop-blur-2xl px-5 py-2.5 border border-white/10 rounded-2xl text-right shadow-xl">
-              <span className="font-metadata text-[0.62rem] text-[var(--color-text-muted)] tracking-[0.2em] block">
+            <div className="bg-black/60 backdrop-blur-2xl px-3 sm:px-5 py-1.5 sm:py-2.5 border border-white/10 rounded-xl sm:rounded-2xl text-right shadow-xl">
+              <span className="font-metadata text-[0.48rem] sm:text-[0.62rem] text-[var(--color-text-muted)] tracking-wider sm:tracking-[0.2em] block">
                 CALIBRE REF.
               </span>
-              <span className="font-mono-num text-xs text-[var(--color-accent)] font-medium tracking-widest">
+              <span className="font-mono-num text-[0.52rem] sm:text-xs text-[var(--color-accent)] font-medium tracking-widest whitespace-nowrap">
                 CAL. 02-AU GOLD
               </span>
             </div>

@@ -10,7 +10,8 @@ const LuxuryDropdown: React.FC<{
   onChange: (val: string) => void;
   accentClass: string;
   options: typeof WATCHES;
-}> = ({ value, onChange, accentClass, options }) => {
+  align?: 'left' | 'right';
+}> = ({ value, onChange, accentClass, options, align = 'left' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = options.find((o) => o.id === value) || options[0];
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -29,7 +30,7 @@ const LuxuryDropdown: React.FC<{
     <div className="relative z-30" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-28 xs:w-36 sm:w-44 bg-black/80 border border-white/15 text-[0.55rem] xs:text-[0.62rem] sm:text-[0.68rem] text-white px-1.5 xs:px-2 py-0.5 sm:py-1 rounded-md hover:border-white/35 transition-all shadow-inner cursor-pointer"
+        className="flex items-center justify-between w-24 xs:w-32 sm:w-44 bg-black/80 border border-white/15 text-[0.5rem] xs:text-[0.58rem] sm:text-[0.68rem] text-white px-1.5 xs:px-2 py-0.5 sm:py-1 rounded-md hover:border-white/35 transition-all shadow-inner cursor-pointer"
         type="button"
       >
         <span className="truncate font-medium">{selectedOption.number} — {selectedOption.name}</span>
@@ -44,8 +45,8 @@ const LuxuryDropdown: React.FC<{
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-1 w-44 xs:w-52 sm:w-56 bg-[#0C0C0B]/98 backdrop-blur-xl border border-white/15 rounded-lg shadow-2xl overflow-hidden z-50 animate-fade-in-up">
-          <div className="max-h-48 overflow-y-auto py-1 divide-y divide-white/5">
+        <div className={`absolute top-full ${align === 'right' ? 'right-0' : 'left-0'} mt-1 w-40 xs:w-48 sm:w-56 bg-[#0C0C0B]/98 backdrop-blur-xl border border-white/15 rounded-lg shadow-2xl overflow-hidden z-50 animate-fade-in-up`}>
+          <div className="max-h-44 sm:max-h-48 overflow-y-auto py-1 divide-y divide-white/5">
             {options.map((opt) => (
               <button
                 key={opt.id}
@@ -53,13 +54,13 @@ const LuxuryDropdown: React.FC<{
                   onChange(opt.id);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-2.5 py-1.5 text-[0.58rem] sm:text-[0.62rem] transition-colors hover:bg-white/10 flex flex-col cursor-pointer ${
+                className={`w-full text-left px-2.5 py-1.5 text-[0.54rem] sm:text-[0.62rem] transition-colors hover:bg-white/10 flex flex-col cursor-pointer ${
                   opt.id === value ? `${accentClass} bg-white/[0.04]` : 'text-white/80'
                 }`}
                 type="button"
               >
                 <div className="font-semibold">{opt.number} — {opt.name}</div>
-                <div className="text-[0.52rem] sm:text-[0.55rem] text-white/45 truncate">{opt.movementType}</div>
+                <div className="text-[0.48rem] sm:text-[0.55rem] text-white/45 truncate">{opt.movementType}</div>
               </button>
             ))}
           </div>
@@ -310,6 +311,7 @@ export const WatchComparator: React.FC = () => {
                     onChange={setWatchAId}
                     accentClass="text-[var(--color-accent)]"
                     options={WATCHES}
+                    align="left"
                   />
                 </div>
 
@@ -352,6 +354,7 @@ export const WatchComparator: React.FC = () => {
                     onChange={setWatchBId}
                     accentClass="text-white font-medium"
                     options={WATCHES}
+                    align="right"
                   />
                 </div>
 
