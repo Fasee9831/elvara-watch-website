@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "elvara-watch",
+  "name": "elvara-watch-website",
   "compatibility_date": "2026-09-11",
   "observability": {
     "enabled": true
