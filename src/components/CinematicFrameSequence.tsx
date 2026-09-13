@@ -74,16 +74,15 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
     return images[0] && images[0].complete && images[0].naturalWidth > 0 ? images[0] : null;
   }, [frameCount]);
 
-  // High-DPR canvas drawing function with mobile GPU optimization
+  // High-DPR canvas drawing function
   const drawImageToCanvas = useCallback((img: HTMLImageElement, progress: number = 0) => {
     const canvas = canvasRef.current;
     if (!canvas || !img.complete || img.naturalWidth === 0) return;
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = isMobile ? 'low' : 'medium';
+    ctx.imageSmoothingQuality = 'high';
 
     const cw = canvas.width;
     const ch = canvas.height;
@@ -146,7 +145,7 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
 
   const renderFrameIndex = useCallback((idx: number, progress: number) => {
     const safeIdx = Math.min(frameCount - 1, Math.max(0, idx));
-    if (safeIdx === lastRenderedIdxRef.current && (!dynamicTransform || Math.abs(progress - lastRenderedProgressRef.current) < 0.002)) {
+    if (safeIdx === lastRenderedIdxRef.current && Math.abs(progress - lastRenderedProgressRef.current) < 0.0001) {
       return;
     }
     lastRenderedIdxRef.current = safeIdx;
@@ -157,7 +156,7 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
     if (img) {
       drawImageToCanvas(img, progress);
     }
-  }, [frameCount, getNearestLoadedImage, drawImageToCanvas, dynamicTransform]);
+  }, [frameCount, getNearestLoadedImage, drawImageToCanvas]);
 
   // Preload all 180 frames into memory
   useEffect(() => {
@@ -211,13 +210,12 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
     };
   }, [folderPath, frameCount, renderFrameIndex]);
 
-  // DPR-Aware Canvas Resize Handler (Optimized for Mobile Battery & GPU)
+  // DPR-Aware Canvas Resize Handler
   const updateCanvasDimensions = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const isMobile = window.innerWidth < 768;
-    const dpr = isMobile ? Math.min(window.devicePixelRatio || 1, 1.5) : Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = Math.max(rect.width, 300);
     const h = Math.max(rect.height, 200);
     canvas.width = Math.round(w * dpr);
@@ -238,20 +236,59 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
     };
   }, [updateCanvasDimensions]);
 
-  // Unified GSAP ScrollTrigger Integration for Buttery-Smooth Zero-Jitter Scrub
+  // DUAL DRIVER 1: Native Window Scroll with RAF gating
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        ticking = false;
+        const trigger = triggerRef.current;
+        if (!trigger) return;
+
+        const rect = trigger.getBoundingClientRect();
+        const totalScrollable = trigger.offsetHeight - window.innerHeight;
+
+        if (totalScrollable <= 0) return;
+
+        // Calculate progress from 0.0 to 1.0 through the track
+        const scrollDistance = -rect.top;
+        const progress = Math.min(1, Math.max(0, scrollDistance / totalScrollable));
+
+        if (Math.abs(progress - currentProgressRef.current) > 0.0005) {
+          currentProgressRef.current = progress;
+          const targetFrame = Math.min(frameCount - 1, Math.max(0, Math.floor(progress * (frameCount - 1))));
+          renderFrameIndex(targetFrame, progress);
+
+          if (onUpdateProgress) {
+            onUpdateProgress(progress);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [triggerRef, frameCount, renderFrameIndex, onUpdateProgress]);
+
+  // DUAL DRIVER 2: GSAP ScrollTrigger Integration for Smooth Easing & Scrub
   useGSAP(
     () => {
       const trigger = triggerRef.current;
       if (!trigger) return;
       if (isReducedMotionPreferred()) return;
 
-      const isMobile = window.innerWidth < 768;
-
       const st = ScrollTrigger.create({
         trigger: trigger,
         start: 'top top',
         end: 'bottom bottom',
-        scrub: isMobile ? 0.05 : 0.1,
+        scrub: 0.1,
         onUpdate: (self) => {
           const progress = self.progress;
           currentProgressRef.current = progress;
@@ -268,7 +305,7 @@ export const CinematicFrameSequence: React.FC<CinematicFrameSequenceProps> = ({
         st.kill();
       };
     },
-    { scope: triggerRef, dependencies: [frameCount, onUpdateProgress] }
+    { scope: triggerRef, dependencies: [frameCount] }
   );
 
   const resolvedBg = bgColor || '#070706';
