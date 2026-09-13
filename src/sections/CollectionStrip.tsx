@@ -198,20 +198,20 @@ export const CollectionStrip: React.FC = () => {
         {/* Top Exhibition Navigation & Progress Bar */}
         <div
           ref={headerRef}
-          className="w-full px-6 md:px-14 lg:px-20 z-20 will-change-[transform,opacity]"
+          className="w-full px-4 sm:px-6 md:px-14 lg:px-20 z-20 will-change-[transform,opacity] shrink-0"
         >
-          <div className="flex justify-between items-end pb-5">
+          <div className="flex justify-between items-end pb-2 sm:pb-4 lg:pb-5">
             <div>
-              <span className="font-eyebrow text-[0.58rem] sm:text-xs tracking-[0.3em] text-[var(--color-accent)] block mb-1">
+              <span className="font-eyebrow text-[0.52rem] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] text-[var(--color-accent)] block mb-0.5 sm:mb-1">
                 COLLECTION EXHIBITION
               </span>
-              <h2 className="font-display text-2xl md:text-4xl lg:text-[2.75rem] text-[var(--color-text-primary)] font-light">
+              <h2 className="font-display text-xl sm:text-2xl md:text-4xl lg:text-[2.75rem] text-[var(--color-text-primary)] font-light leading-none">
                 THE NINE
               </h2>
             </div>
 
             {/* Active Timepiece Counter */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="hidden md:flex flex-col text-right">
                 <span className="font-metadata text-[0.58rem] text-[var(--color-text-muted)] tracking-widest">
                   CURRENT TIMEPIECE
@@ -220,7 +220,7 @@ export const CollectionStrip: React.FC = () => {
                   {WATCHES[activeIndex]?.name}
                 </span>
               </div>
-              <div className="font-metadata text-xs tracking-[0.2em] text-[var(--color-text-primary)] border border-white/15 px-3 py-1 bg-black/60 backdrop-blur-xl rounded-full shadow-lg">
+              <div className="font-metadata text-[0.62rem] sm:text-xs tracking-[0.2em] text-[var(--color-text-primary)] border border-white/15 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-black/60 backdrop-blur-xl rounded-full shadow-lg">
                 {WATCHES[activeIndex]?.number || '01 / 09'}
               </div>
             </div>
@@ -238,7 +238,7 @@ export const CollectionStrip: React.FC = () => {
         {/* Horizontal Spatial Exhibition Track */}
         <div
           ref={trackRef}
-          className="self-start flex h-[52vh] sm:h-[55vh] md:h-[58vh] w-max flex-nowrap items-center space-x-5 px-6 md:space-x-8 md:px-14 lg:px-20 will-change-transform z-10 my-auto"
+          className="self-start flex h-[62vh] max-h-[500px] min-h-[380px] sm:h-[60vh] sm:max-h-[520px] lg:h-[58vh] lg:max-h-none w-max flex-nowrap items-center space-x-3.5 xs:space-x-4 sm:space-x-6 md:space-x-8 px-4 xs:px-6 md:px-14 lg:px-20 will-change-transform z-10 my-auto"
         >
           {WATCHES.map((watch, index) => {
             const isHeroCard = index === 0 || index === 3 || index === 7;
@@ -250,10 +250,10 @@ export const CollectionStrip: React.FC = () => {
                   cardsRef.current[index] = el;
                 }}
                 onClick={() => handleCardClick(watch.id)}
-                className={`flex-shrink-0 h-full flex flex-col lg:flex-row shadow-2xl overflow-hidden bg-[#0F0F0D]/90 backdrop-blur-3xl border border-white/10 hover:border-[var(--color-accent)]/50 transition-all duration-500 rounded-2xl relative group cursor-pointer ${
+                className={`flex-shrink-0 h-full flex flex-col lg:flex-row shadow-2xl overflow-hidden bg-[#0F0F0D]/90 backdrop-blur-3xl border border-white/10 hover:border-[var(--color-accent)]/50 transition-all duration-500 rounded-xl sm:rounded-2xl relative group cursor-pointer ${
                   isHeroCard
-                    ? 'w-[86vw] md:w-[64vw] lg:w-[54vw]'
-                    : 'w-[80vw] md:w-[54vw] lg:w-[44vw]'
+                    ? 'w-[84vw] xs:w-[82vw] sm:w-[68vw] md:w-[64vw] lg:w-[54vw]'
+                    : 'w-[78vw] xs:w-[76vw] sm:w-[58vw] md:w-[54vw] lg:w-[44vw]'
                 }`}
                 style={{
                   background: `linear-gradient(135deg, ${watch.bgGradient} 0%, #0A0A09 100%)`,
@@ -262,7 +262,7 @@ export const CollectionStrip: React.FC = () => {
                 }}
               >
                 {/* Watch Image Showcase */}
-                <div className="w-full lg:w-[55%] h-[52%] lg:h-full overflow-hidden relative bg-[#141413]">
+                <div className="w-full lg:w-[55%] h-[42%] xs:h-[44%] sm:h-[48%] lg:h-full overflow-hidden relative bg-[#141413] shrink-0">
                   {/* Subtle Luxury Image Skeleton Placeholder */}
                   <div className="absolute inset-0 image-loading-placeholder pointer-events-none z-0" />
                   <img
@@ -274,58 +274,64 @@ export const CollectionStrip: React.FC = () => {
                   />
                   {/* Dark gradient overlay protecting text and dials */}
                   <div className="collection-image-gradient absolute inset-0 pointer-events-none z-[2]" />
-                  <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/95 via-black/60 to-transparent pointer-events-none z-[3]" />
+                  <div className="absolute inset-x-0 bottom-0 h-16 sm:h-24 bg-gradient-to-t from-black/95 via-black/60 to-transparent pointer-events-none z-[3]" />
 
                   {/* Number Badge */}
-                  <div className="absolute top-3.5 left-3.5 font-metadata text-[0.58rem] tracking-[0.2em] bg-black/75 backdrop-blur-2xl px-2.5 py-1 border border-white/20 text-white rounded-full shadow-lg font-semibold z-[4]">
+                  <div className="absolute top-2.5 xs:top-3.5 left-2.5 xs:left-3.5 font-metadata text-[0.48rem] xs:text-[0.58rem] tracking-[0.16em] sm:tracking-[0.2em] bg-black/75 backdrop-blur-2xl px-2 xs:px-2.5 py-0.5 xs:py-1 border border-white/20 text-white rounded-full shadow-lg font-semibold z-[4]">
                     N° {watch.number}
                   </div>
                 </div>
 
                 {/* Editorial Details Column */}
-                <div className="w-full lg:w-[45%] h-[48%] lg:h-full p-3 xs:p-3.5 sm:p-4 md:p-5 lg:p-5 flex flex-col justify-between relative bg-[#0D0D0B]/95 backdrop-blur-md">
+                <div className="w-full lg:w-[45%] h-[58%] xs:h-[56%] sm:h-[52%] lg:h-full p-2.5 xs:p-3 sm:p-4 md:p-5 lg:p-5 flex flex-col justify-between relative bg-[#0D0D0B]/95 backdrop-blur-md">
                   {/* Accent Top Border */}
                   <div
-                    className="absolute top-0 left-0 w-full lg:w-[2.5px] lg:h-full h-[2.5px] transition-all duration-300"
+                    className="absolute top-0 left-0 w-full lg:w-[2.5px] lg:h-full h-[2px] lg:h-full transition-all duration-300"
                     style={{ backgroundColor: watch.accentColor }}
                   />
 
-                  <div>
-                    <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
-                      <span className="font-eyebrow text-[0.54rem] sm:text-[0.58rem] md:text-[0.65rem] tracking-[0.2em] text-[var(--color-accent)] font-semibold truncate pr-2">
+                  <div className="min-h-0 flex-1 flex flex-col justify-start">
+                    {/* Collection Category & Price Row */}
+                    <div className="flex items-center justify-between gap-1 mb-1 sm:mb-1.5 shrink-0">
+                      <span className="font-eyebrow text-[0.5rem] xs:text-[0.56rem] md:text-[0.65rem] tracking-[0.16em] sm:tracking-[0.2em] text-[var(--color-accent)] font-semibold truncate pr-1">
                         {watch.collection}
                       </span>
                       
-                      <div className="inline-flex items-center gap-1 font-sans text-[0.56rem] sm:text-[0.62rem] tracking-wider text-white/95 bg-[#141414]/90 backdrop-blur-xl border border-white/10 px-2 py-0.5 rounded-md font-medium shadow-md whitespace-nowrap shrink-0">
+                      <div className="inline-flex items-center gap-1 font-sans text-[0.52rem] xs:text-[0.58rem] sm:text-[0.62rem] tracking-wider text-white/95 bg-[#141414]/90 backdrop-blur-xl border border-white/10 px-1.5 xs:px-2 py-0.5 rounded font-medium shadow-md whitespace-nowrap shrink-0">
                         <FormattedPrice watch={watch} />
                       </div>
                     </div>
 
-                    <h3 className="font-cinzel text-base xs:text-lg sm:text-xl md:text-2xl text-gold-bright font-light tracking-wide mb-0.5 sm:mb-1">
+                    {/* Model Name */}
+                    <h3 className="font-cinzel text-sm xs:text-base sm:text-xl md:text-2xl text-gold-bright font-light tracking-wide mb-0.5 sm:mb-1 leading-tight truncate shrink-0">
                       {watch.name}
                     </h3>
+
+                    {/* Statement Quote */}
                     <p
-                      className="font-display text-[0.62rem] xs:text-[0.7rem] md:text-xs text-[var(--color-accent)] mb-1 sm:mb-1.5 italic font-normal line-clamp-1"
+                      className="font-display text-[0.56rem] xs:text-[0.64rem] sm:text-xs text-[var(--color-accent)] mb-0.5 sm:mb-1 italic font-normal line-clamp-1 shrink-0"
                     >
                       "{watch.statement}"
                     </p>
-                    <p className="font-body text-[0.68rem] xs:text-[0.72rem] md:text-[0.78rem] text-white/75 font-light leading-relaxed line-clamp-2 md:line-clamp-4">
+
+                    {/* Description Paragraph */}
+                    <p className="font-body text-[0.58rem] xs:text-[0.65rem] sm:text-[0.74rem] md:text-[0.78rem] text-white/75 font-light leading-snug xs:leading-relaxed line-clamp-2 sm:line-clamp-3 md:line-clamp-4">
                       {watch.description}
                     </p>
                   </div>
 
-                  {/* Micro Specs Tags & Action */}
-                  <div className="pt-2 sm:pt-3 flex items-center justify-between border-t border-white/10">
-                    <div className="flex gap-1 sm:gap-1.5 flex-wrap">
-                      <span className="font-metadata text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
+                  {/* Micro Specs Tags & Action Footer */}
+                  <div className="pt-1.5 sm:pt-2.5 flex items-center justify-between border-t border-white/10 shrink-0">
+                    <div className="flex gap-1 xs:gap-1.5 flex-wrap">
+                      <span className="font-metadata text-[0.46rem] xs:text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-1.5 xs:px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium whitespace-nowrap">
                         {watch.caseDiameter}
                       </span>
-                      <span className="font-metadata text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium">
+                      <span className="font-metadata text-[0.46rem] xs:text-[0.52rem] sm:text-[0.58rem] border border-white/20 px-1.5 xs:px-2 sm:px-2.5 py-0.5 text-white bg-white/10 rounded-full font-medium whitespace-nowrap">
                         {watch.waterResistance}
                       </span>
                     </div>
-                    <span className="font-metadata text-[0.58rem] sm:text-[0.65rem] text-[var(--color-accent)] tracking-wider group-hover:translate-x-1 transition-transform font-semibold flex items-center gap-1">
-                      COMPARE SPEC →
+                    <span className="font-metadata text-[0.52rem] xs:text-[0.58rem] sm:text-[0.65rem] text-[var(--color-accent)] tracking-wider group-hover:translate-x-1 transition-transform font-semibold flex items-center gap-0.5 sm:gap-1 whitespace-nowrap pl-1">
+                      COMPARE <span className="hidden xs:inline">SPEC</span> →
                     </span>
                   </div>
                 </div>
@@ -335,7 +341,7 @@ export const CollectionStrip: React.FC = () => {
         </div>
 
         {/* Bottom Status Bar */}
-        <div className="w-full px-4 sm:px-6 md:px-14 lg:px-20 z-20 flex justify-between items-center font-metadata text-white/70 text-[0.52rem] sm:text-xs tracking-[0.16em] sm:tracking-[0.25em]">
+        <div className="w-full px-4 sm:px-6 md:px-14 lg:px-20 z-20 flex justify-between items-center font-metadata text-white/70 text-[0.46rem] xs:text-[0.52rem] sm:text-xs tracking-[0.14em] sm:tracking-[0.25em] shrink-0 pt-1">
           <span className="hidden sm:inline">HORLOGERIE D'EXCELLENCE</span>
           <span className="text-[var(--color-accent)] font-semibold">SCROLL TO EXPLORE THE COLLECTION</span>
           <span>9 PIECES TOTAL</span>
